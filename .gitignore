@@ -1,3 +1,10 @@
+# CMake outputs
+cmake-build-debug
+cmake-build-release
+
+# IntelliJ IDEs
+.idea
+
 # Prerequisites
 *.d
 
