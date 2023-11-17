@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="666.6666666666666"
+     height="433.3333333333333" aria-label="A chart." style="overflow: hidden;">
+    <defs id="_ABSTRACT_RENDERER_ID_1572">
+        <clipPath id="_ABSTRACT_RENDERER_ID_1573">
+            <rect x="127" y="83" width="412" height="268"></rect>
+        </clipPath>
+        <filter id="_ABSTRACT_RENDERER_ID_1574">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="2"></feGaussianBlur>
+            <feOffset dx="1" dy="1"></feOffset>
+            <feComponentTransfer>
+                <feFuncA type="linear" slope="0.1"></feFuncA>
+            </feComponentTransfer>
+            <feMerge>
+                <feMergeNode></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <rect x="0" y="0" width="666.6666666666666" height="433.3333333333333" stroke="none" stroke-width="0"
+          fill="#ffffff"></rect>
+    <g>
+        <text text-anchor="start" x="127" y="60.05" font-family="Arial" font-size="13" font-weight="bold" stroke="none"
+              stroke-width="0" fill="#000000">Execution Time with 100 Images (lower is better)
+        </text>
+        <rect x="127" y="49" width="412" height="13" stroke="none" stroke-width="0" fill-opacity="0"
+              fill="#ffffff"></rect>
+    </g>
+    <g>
+        <rect x="552" y="83" width="101.66666666666663" height="178" stroke="none" stroke-width="0" fill-opacity="0"
+              fill="#ffffff"></rect>
+        <g>
+            <rect x="552" y="83" width="101.66666666666663" height="47" stroke="none" stroke-width="0" fill-opacity="0"
+                  fill="#ffffff"></rect>
+            <g>
+                <text text-anchor="start" x="583" y="94.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">parallel
+                </text>
+                <text text-anchor="start" x="583" y="111.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">non-
+                </text>
+                <text text-anchor="start" x="583" y="128.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">buffered
+                </text>
+            </g>
+            <rect x="552" y="83" width="26" height="13" stroke="none" stroke-width="0" fill="#109618"></rect>
+        </g>
+        <g>
+            <rect x="552" y="138" width="101.66666666666663" height="30" stroke="none" stroke-width="0" fill-opacity="0"
+                  fill="#ffffff"></rect>
+            <g>
+                <text text-anchor="start" x="583" y="149.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">parallel
+                </text>
+                <text text-anchor="start" x="583" y="166.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">buffered
+                </text>
+            </g>
+            <rect x="552" y="138" width="26" height="13" stroke="none" stroke-width="0" fill="#3366cc"></rect>
+        </g>
+        <g>
+            <rect x="552" y="176" width="101.66666666666663" height="47" stroke="none" stroke-width="0" fill-opacity="0"
+                  fill="#ffffff"></rect>
+            <g>
+                <text text-anchor="start" x="583" y="187.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">sequential
+                </text>
+                <text text-anchor="start" x="583" y="204.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">non-
+                </text>
+                <text text-anchor="start" x="583" y="221.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">buffered
+                </text>
+            </g>
+            <rect x="552" y="176" width="26" height="13" stroke="none" stroke-width="0" fill="#ff9900"></rect>
+        </g>
+        <g>
+            <rect x="552" y="231" width="101.66666666666663" height="30" stroke="none" stroke-width="0" fill-opacity="0"
+                  fill="#ffffff"></rect>
+            <g>
+                <text text-anchor="start" x="583" y="242.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">sequential
+                </text>
+                <text text-anchor="start" x="583" y="259.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">buffered
+                </text>
+            </g>
+            <rect x="552" y="231" width="26" height="13" stroke="none" stroke-width="0" fill="#dc3912"></rect>
+        </g>
+    </g>
+    <g>
+        <rect x="127" y="83" width="412" height="268" stroke="none" stroke-width="0" fill-opacity="0"
+              fill="#ffffff"></rect>
+        <g clip-path="url(https://www.rapidtables.com/tools/bar-graph.html#_ABSTRACT_RENDERER_ID_1573)">
+            <g>
+                <rect x="127" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                <rect x="230" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                <rect x="333" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                <rect x="435" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                <rect x="538" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#cccccc"></rect>
+                <rect x="178" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+                <rect x="281" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+                <rect x="384" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+                <rect x="487" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#ebebeb"></rect>
+            </g>
+            <g>
+                <rect x="128" y="134" width="41" height="41" stroke="none" stroke-width="0" fill="#109618"></rect>
+                <rect x="128" y="176" width="41" height="41" stroke="none" stroke-width="0" fill="#3366cc"></rect>
+                <rect x="128" y="218" width="349" height="40" stroke="none" stroke-width="0" fill="#ff9900"></rect>
+                <rect x="128" y="259" width="349" height="41" stroke="none" stroke-width="0" fill="#dc3912"></rect>
+            </g>
+            <g>
+                <rect x="127" y="83" width="1" height="268" stroke="none" stroke-width="0" fill="#333333"></rect>
+            </g>
+        </g>
+        <g></g>
+        <g>
+            <g>
+                <text text-anchor="middle" x="127.5" y="370.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#444444">0
+                </text>
+            </g>
+            <g>
+                <text text-anchor="middle" x="230.25" y="370.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#444444">50
+                </text>
+            </g>
+            <g>
+                <text text-anchor="middle" x="333" y="370.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#444444">100
+                </text>
+            </g>
+            <g>
+                <text text-anchor="middle" x="435.75" y="370.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#444444">150
+                </text>
+            </g>
+            <g>
+                <text text-anchor="middle" x="538.5" y="370.05" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#444444">200
+                </text>
+            </g>
+            <g>
+                <text text-anchor="end" x="114" y="221.55" font-family="Arial" font-size="13" stroke="none"
+                      stroke-width="0" fill="#222222">execution type
+                </text>
+            </g>
+        </g>
+    </g>
+    <g>
+        <g>
+            <text text-anchor="middle" x="333" y="407.21666666666664" font-family="Arial" font-size="13"
+                  font-style="italic" stroke="none" stroke-width="0" fill="#222222">execution time (seconds)
+            </text>
+            <rect x="127" y="396.16666666666663" width="412" height="13" stroke="none" stroke-width="0" fill-opacity="0"
+                  fill="#ffffff"></rect>
+        </g>
+    </g>
+    <g></g>
+</svg>
