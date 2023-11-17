@@ -16,14 +16,14 @@ class ParallelProcess {
 public:
     ParallelProcess(fs::path input, fs::path output);
 
-    int run(const cv::Vec3b &find, const cv::Vec3b &replace);
+    int run(const cv::Vec3b &find, const cv::Vec3b &replace, bool buffered);
 
 private:
-    void loadImages();
+    void loadImages(bool buffered);
 
     void performColorManipulation(const cv::Vec3b &find, const cv::Vec3b &replace);
 
-    void saveImages();
+    void saveImages(bool buffered);
 
 private:
     const fs::path _input;

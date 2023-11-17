@@ -9,25 +9,29 @@
 ParallelProcess::ParallelProcess(fs::path input, fs::path output) : _input(std::move(input)),
                                                                     _output(std::move(output)) {}
 
-int ParallelProcess::run(const Vec3b &find, const Vec3b &replace) {
+int ParallelProcess::run(const Vec3b &find, const Vec3b &replace, bool buffered) {
 
     // Load images
-    this->loadImages();
+    this->loadImages(buffered);
 
     // Perform color manipulation
     this->performColorManipulation(find, replace);
 
     // Save images
-    this->saveImages();
+    this->saveImages(buffered);
 
     return EXIT_SUCCESS;
 }
 
-void ParallelProcess::loadImages() {
+void ParallelProcess::loadImages(bool buffered) {
     // Queue images for read
     for (const auto &entry: fs::directory_iterator(_input)) {
         _imagesLoad.emplace(std::make_unique<Image>(entry.path()));
-        _loadFutures.emplace(std::async(std::launch::async, &Image::load, _imagesLoad.back().get()));
+        if (buffered) {
+            _loadFutures.emplace(std::async(std::launch::async, &Image::loadBuffered, _imagesLoad.back().get()));
+        } else {
+            _loadFutures.emplace(std::async(std::launch::async, &Image::load, _imagesLoad.back().get()));
+        }
     }
 
     // Load images asynchronously
@@ -58,13 +62,17 @@ void ParallelProcess::performColorManipulation(const Vec3b &find, const Vec3b &r
     }
 }
 
-void ParallelProcess::saveImages() {
+void ParallelProcess::saveImages(bool buffered) {
     // Save images asynchronously
     for (const auto &image: _images) {
         // Generate output file path
         const auto outputPath = _output / image->getPath().filename();
         // Save image on disk asynchronously
-        _saveFutures.push(std::async(std::launch::async, &Image::save, image.get(), outputPath));
+        if (buffered) {
+            _saveFutures.push(std::async(std::launch::async, &Image::saveBuffered, image.get(), outputPath));
+        } else {
+            _saveFutures.push(std::async(std::launch::async, &Image::save, image.get(), outputPath));
+        }
     }
 
     // Wait for all images to be saved on disk

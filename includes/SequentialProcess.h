@@ -14,7 +14,7 @@ class SequentialProcess {
 public:
     SequentialProcess(fs::path input, fs::path output);
 
-    int run(const Vec3b &find, const Vec3b &replace);
+    int run(const Vec3b &find, const Vec3b &replace, bool buffered);
 
 private:
     const fs::path _input;

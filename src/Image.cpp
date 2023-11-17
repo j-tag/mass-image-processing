@@ -3,12 +3,11 @@
 //
 
 #include "includes/Image.h"
+#include "includes/BufferedIO.h"
 #include <iostream>
 #include <utility>
 
-Image::Image(fs::path path) : _path(std::move(path)) {
-
-}
+Image::Image(fs::path path) : _path(std::move(path)) {}
 
 void Image::changeColor(const Vec3b find, const Vec3b replace) {
     const unsigned int tolerance = 30;
@@ -24,12 +23,25 @@ void Image::changeColor(const Vec3b find, const Vec3b replace) {
 
 void Image::save(const String &filename) {
     if (!imwrite(filename, _img)) {
-        std::cerr << "Error writing image: " << filename << '\n';
+        std::cerr << "Error writing image: " << filename << std::endl;
     }
+}
+
+void Image::saveBuffered(const String &filename) {
+    BufferedIO::write(filename, _img);
 }
 
 void Image::load() {
     _img = imread(_path);
+}
+
+void Image::loadBuffered() {
+    const auto data = BufferedIO::read(_path);
+    cv::imdecode(
+            data,
+            cv::IMREAD_COLOR,
+            &_img
+    );
 }
 
 fs::path Image::getPath() const {
