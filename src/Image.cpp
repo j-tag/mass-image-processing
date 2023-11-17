@@ -6,13 +6,15 @@
 #include "includes/BufferedIO.h"
 #include <iostream>
 #include <utility>
+#include <execution>
 
 Image::Image(fs::path path) : _path(std::move(path)) {}
 
 void Image::changeColor(const Vec3b find, const Vec3b replace) {
     const unsigned int tolerance = 30;
 
-    std::transform(_img.begin<Vec3b>(), _img.end<Vec3b>(), _img.begin<Vec3b>(), [&](auto &pixel) {
+    std::transform(std::execution::par, _img.begin<Vec3b>(), _img.end<Vec3b>(), _img.begin<Vec3b>(),
+                   [&](auto &pixel) {
         if (norm(pixel, find, NORM_L2SQR) < tolerance * tolerance) {
             return replace;
         } else {
