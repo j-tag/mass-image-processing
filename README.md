@@ -25,6 +25,14 @@ No manual thread handling, no locks, no mutex, no semaphore.
 * Simple and understandable code
 * Documented code
 
+For comparison you can see a sequential manipulation of images takes too long:
+
+https://github.com/j-tag/mass-image-processing/assets/3483320/e59c3637-8c45-44e2-8faf-dc380ed25bd0
+
+But when using parallel execution everything is blazing fast:
+
+https://github.com/j-tag/mass-image-processing/assets/3483320/6591a041-aafe-4c03-838a-8b6f7108534c
+
 ## Quickstart
 
 This project is created using *OpenCV* and *TBB* libs, so you need to have those in your `$PATH` in order to compile the
