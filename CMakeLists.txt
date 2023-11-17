@@ -9,6 +9,10 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(mass_image_processing src/main.cpp
         src/Image.cpp
-        includes/Image.h)
+        includes/Image.h
+        src/ParallelProcess.cpp
+        includes/ParallelProcess.h
+        src/SequentialProcess.cpp
+        includes/SequentialProcess.h)
 
 target_link_libraries(mass_image_processing ${OpenCV_LIBS})
