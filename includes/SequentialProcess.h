@@ -8,12 +8,13 @@
 #include <filesystem>
 
 namespace fs = std::filesystem;
+using namespace cv;
 
 class SequentialProcess {
 public:
     SequentialProcess(fs::path input, fs::path output);
 
-    int run();
+    int run(const Vec3b &find, const Vec3b &replace);
 
 private:
     const fs::path _input;

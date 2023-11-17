@@ -11,12 +11,7 @@
 SequentialProcess::SequentialProcess(fs::path input, fs::path output) : _input(std::move(input)),
                                                                         _output(std::move(output)) {}
 
-int SequentialProcess::run() {
-    using namespace cv;
-
-    // Color manipulation values
-    const Vec3b find = {190, 190, 190};
-    const Vec3b replace = {85, 85, 255};
+int SequentialProcess::run(const Vec3b &find, const Vec3b &replace) {
 
     for (const auto &entry: fs::directory_iterator(_input)) {
 
