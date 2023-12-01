@@ -2,11 +2,11 @@
 
 Simple hassle-free image processing using OpenCV for large amount of images concurrently in C++.
 
-This program replaces a color in a group of images concurrently. For example you can change red color to green in all
-images inside a directory. This operation will be in the most possible efficient way.
+This program can apply a list of filters on a group of images concurrently. For example you can change red color to green, then yello color to blue and then apply a gaussian blur in all
+images inside a directory. These operations will be in the most possible efficient way. Both image groups and every single filters on individual images are processed in parallel and concurrently.
 
 Created using modern C++ 20 features to utilize concurrent and parallel programming and managing threads using
-asynchronous execution and _futures_.
+asynchronous execution, _futures_ and _TBB_ lib.
 
 No manual thread handling, no locks, no mutex, no semaphore.
 
@@ -14,10 +14,13 @@ No manual thread handling, no locks, no mutex, no semaphore.
 
 * Parallel loading of images from directory
 * Parallel manipulation of images in OpenCV
+* Parallel manipulation of every single filter on individual images
+* Preserve order of filters when applying concurrently
 * Parallel saving of images to output directory
 * Ability to buffer IO
 * Asynchronous
 * Using _futures_
+* Using _TBB_
 * Concurrent and parallel
 * Sequential version for comparison
 * No lock, mutex or semaphore
