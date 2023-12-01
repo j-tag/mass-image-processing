@@ -30,10 +30,9 @@ int main(int argc, char const **argv) {
     const cv::Vec3b to2 = {222, 73, 50};
     ColorChangeOperation colorChangeOperation2(from2, to2);
     // Gaussian blur
-    cv::Size size(33, 33);
-    GaussianBlurOperation gaussianBlurOperation(size);
+    GaussianBlurOperation gaussianBlurOperation(cv::Size(33, 33));
 
-    // Keep a list of all operations that should be applied on images
+    // Keep a list of all operations that should be applied on images (order is important)
     std::vector<std::reference_wrapper<ImageOperation>> operations{
             colorChangeOperation1,
             colorChangeOperation2,
@@ -52,5 +51,5 @@ int main(int argc, char const **argv) {
     }
 
     // Run in parallel mode
-    return par.run(from1, to1, buffered);
+    return par.run(operations, buffered);
 }

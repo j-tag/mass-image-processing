@@ -5,17 +5,19 @@
 #include <utility>
 #include <iostream>
 #include "includes/ParallelProcess.h"
+#include "includes/ColorChangeOperation.h"
+#include "includes/GaussianBlurOperation.h"
 
 ParallelProcess::ParallelProcess(fs::path input, fs::path output) : _input(std::move(input)),
                                                                     _output(std::move(output)) {}
 
-int ParallelProcess::run(const Vec3b &find, const Vec3b &replace, bool buffered) {
+int ParallelProcess::run(const std::vector<std::reference_wrapper<ImageOperation>> &operations, bool buffered) {
 
     // Load images
     this->loadImages(buffered);
 
-    // Perform color manipulation
-    this->performOperations(find, replace);
+    // Perform image manipulation operations
+    this->performOperations(operations);
 
     // Save images
     this->saveImages(buffered);
@@ -42,23 +44,23 @@ void ParallelProcess::loadImages(bool buffered) {
     }
 }
 
-void ParallelProcess::performOperations(const Vec3b &find, const Vec3b &replace) {
-    // Queue images for color manipulation
+void ParallelProcess::performOperations(const std::vector<std::reference_wrapper<ImageOperation>> &operations) {
+    // Queue images for manipulations
     for (const auto &entry: fs::directory_iterator(_input)) {
         std::cout << "Queuing: " << entry.path() << std::endl;
         _images.push_back(std::move(_imagesLoad.front()));
         _imagesLoad.pop();
-        // Asynchronously change the color of the image
-        _changeColorFutures.push(
-                std::async(std::launch::async, &Image::changeColor, _images.back().get(), find, replace));
+        // Process all operations of each image asynchronously and preserve order of manipulations
+        _operationsFutures.push(
+                std::async(std::launch::async, &Image::orderedOperations, _images.back().get(), operations));
     }
 
-    // Wait for color manipulation to be finished
+    // Wait for all manipulations to be finished
     for (const auto &image: _images) {
         std::cout << "Processing: " << image->getPath() << std::endl;
         // Get the results when ready
-        _changeColorFutures.front().wait();
-        _changeColorFutures.pop();
+        _operationsFutures.front().wait();
+        _operationsFutures.pop();
     }
 }
 

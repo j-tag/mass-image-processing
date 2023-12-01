@@ -7,6 +7,7 @@
 
 #include <opencv2/imgcodecs.hpp>
 #include <filesystem>
+#include "ImageOperation.h"
 
 using namespace cv;
 namespace fs = std::filesystem;
@@ -31,6 +32,12 @@ public:
      * Loads the image from constructor path to OpenCV with buffered IO.
      */
     void loadBuffered();
+
+    /**
+     * Run concurrent and parallel operations on image but preserve the order of operations.
+     * @param operations The list of image operations that should be done on current image preserving their order.
+     */
+    void orderedOperations(const std::vector<std::reference_wrapper<ImageOperation>> &operations);
 
     /**
      * Perform a color change operation using OpenCV and parallel execution policy.

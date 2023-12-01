@@ -9,6 +9,7 @@
 #include <queue>
 #include <filesystem>
 #include "includes/Image.h"
+#include "ImageOperation.h"
 
 namespace fs = std::filesystem;
 
@@ -26,12 +27,11 @@ public:
 
     /**
      * Runs the manipulation process concurrently and efficiently.
-     * @param find Color to be found in images.
-     * @param replace Color to be replaced with founded one.
+     * @param operations A list of image operations to be applied to all images.
      * @param buffered Whether to use buffered IO or not.
      * @return Returns `EXIT_SUCCESS` when finished ok.
      */
-    int run(const cv::Vec3b &find, const cv::Vec3b &replace, bool buffered);
+    int run(const std::vector<std::reference_wrapper<ImageOperation>> &operations, bool buffered);
 
 private:
     /**
@@ -41,11 +41,10 @@ private:
     void loadImages(bool buffered);
 
     /**
-     * Performs the color manipulation process concurrently and efficiently in parallel.
-     * @param find Color to be found in images.
-     * @param replace Color to be replaced with founded one.
+     * Performs all of the image manipulation processes concurrently and efficiently in parallel preserving their order.
+     * @param operations A list of image operations to be applied to all images.
      */
-    void performOperations(const cv::Vec3b &find, const cv::Vec3b &replace);
+    void performOperations(const std::vector<std::reference_wrapper<ImageOperation>> &operations);
 
     /**
      * Saves all images to output directory using OpenCV concurrently.
@@ -58,26 +57,32 @@ private:
      * Input directory. Should contains jpg images.
      */
     const fs::path _input;
+
     /**
      * Output directory. Should be empty.
      */
     const fs::path _output;
+
     /**
-     * A queue of futures to perform OpenCV color manipulation operations in parallel.
+     * A queue of futures to perform OpenCV manipulation operations in parallel.
      */
-    std::queue<std::future<void>> _changeColorFutures;
+    std::queue<std::future<void>> _operationsFutures;
+
     /**
      * A queue of futures to load images in parallel.
      */
     std::queue<std::future<void>> _loadFutures;
+
     /**
      * A queue of futures to save images in parallel.
      */
     std::queue<std::future<void>> _saveFutures;
+
     /**
      * A queue of smart pointers to load images to OpenCV in parallel.
      */
     std::queue<std::unique_ptr<Image>> _imagesLoad;
+
     /**
      * A vector of smart pointers to hold and manipulate images in parallel.
      */
