@@ -17,6 +17,9 @@ add_executable(mass_image_processing src/main.cpp
         src/SequentialProcess.cpp
         includes/SequentialProcess.h
         src/BufferedIO.cpp
-        includes/BufferedIO.h)
+        includes/BufferedIO.h
+        includes/ImageOperation.h
+        includes/ColorChangeOperation.h
+        includes/GaussianBlurOperation.h)
 
 target_link_libraries(mass_image_processing ${OpenCV_LIBS} TBB::tbb)

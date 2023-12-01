@@ -6,6 +6,8 @@
 #define MASS_IMAGE_PROCESSING_SEQUENTIALPROCESS_H
 
 #include <filesystem>
+#include "ImageOperation.h"
+#include "ColorChangeOperation.h"
 
 namespace fs = std::filesystem;
 using namespace cv;
@@ -24,18 +26,25 @@ public:
 
     /**
      * Runs the manipulation process sequentially.
-     * @param find Color to be found in images.
-     * @param replace Color to be replaced with founded one.
+     * @param operations A list of image operations to be applied to all images.
      * @param buffered Whether to use buffered IO or not.
      * @return Returns `EXIT_SUCCESS` when finished ok.
      */
-    int run(const Vec3b &find, const Vec3b &replace, bool buffered);
+    int run(const std::vector<std::reference_wrapper<ImageOperation>> &operations, bool buffered);
 
 private:
+    /**
+     * Changes color of an OpenCV images sequentially using details provided by a `ColorChangeOperation` object.
+     * @param img
+     * @param operation
+     */
+    static void colorChange(cv::Mat &img, const ColorChangeOperation &operation);
+
     /**
      * Input directory. Should contains jpg images.
      */
     const fs::path _input;
+
     /**
      * Output directory. Should be empty.
      */

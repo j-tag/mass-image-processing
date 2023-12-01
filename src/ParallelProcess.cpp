@@ -15,7 +15,7 @@ int ParallelProcess::run(const Vec3b &find, const Vec3b &replace, bool buffered)
     this->loadImages(buffered);
 
     // Perform color manipulation
-    this->performColorManipulation(find, replace);
+    this->performOperations(find, replace);
 
     // Save images
     this->saveImages(buffered);
@@ -42,7 +42,7 @@ void ParallelProcess::loadImages(bool buffered) {
     }
 }
 
-void ParallelProcess::performColorManipulation(const Vec3b &find, const Vec3b &replace) {
+void ParallelProcess::performOperations(const Vec3b &find, const Vec3b &replace) {
     // Queue images for color manipulation
     for (const auto &entry: fs::directory_iterator(_input)) {
         std::cout << "Queuing: " << entry.path() << std::endl;

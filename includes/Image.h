@@ -37,7 +37,13 @@ public:
      * @param find The color to be found.
      * @param replace The color that should be replaced with the founded color.
      */
-    void changeColor(Vec3b find, Vec3b replace);
+    void changeColor(const Vec3b &find, const Vec3b &replace);
+
+    /**
+     * Perform a gaussian blur operation using OpenCV and TDD parallel loops.
+     * @param size The size of gaussian blur to be applied.
+     */
+    void gaussianBlur(const Size &size);
 
     /**
      * Saves current OpenCV image to provided path.

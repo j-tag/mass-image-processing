@@ -7,20 +7,34 @@
 #include <iostream>
 #include <utility>
 #include <execution>
+#include <opencv2/imgproc.hpp>
 
 Image::Image(fs::path path) : _path(std::move(path)) {}
 
-void Image::changeColor(const Vec3b find, const Vec3b replace) {
+void Image::changeColor(const Vec3b &find, const Vec3b &replace) {
     const unsigned int tolerance = 30;
 
+    // If you look carefully, here we have `std::execution::par` for the `exec` parameter, which causes this
+    // transformation to use TBB and run the operation in parallel
     std::transform(std::execution::par, _img.begin<Vec3b>(), _img.end<Vec3b>(), _img.begin<Vec3b>(),
                    [&](auto &pixel) {
-        if (norm(pixel, find, NORM_L2SQR) < tolerance * tolerance) {
-            return replace;
-        } else {
-            return pixel;
-        }
-    });
+                       if (norm(pixel, find, NORM_L2SQR) < tolerance * tolerance) {
+                           return replace;
+                       } else {
+                           return pixel;
+                       }
+                   });
+}
+
+void Image::gaussianBlur(const Size &size) {
+    // Apply Gaussian blur
+    // Process each row of image in parallel
+    tbb::parallel_for(tbb::blocked_range<int>(0, _img.rows),
+                      [&](tbb::blocked_range<int> r) {
+                          for (int i = r.begin(); i < r.end(); ++i) {
+                              cv::GaussianBlur(_img.row(i), _img.row(i), size, 0);
+                          }
+                      });
 }
 
 void Image::save(const String &filename) {

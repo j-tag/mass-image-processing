@@ -45,7 +45,7 @@ private:
      * @param find Color to be found in images.
      * @param replace Color to be replaced with founded one.
      */
-    void performColorManipulation(const cv::Vec3b &find, const cv::Vec3b &replace);
+    void performOperations(const cv::Vec3b &find, const cv::Vec3b &replace);
 
     /**
      * Saves all images to output directory using OpenCV concurrently.
