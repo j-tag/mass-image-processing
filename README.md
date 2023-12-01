@@ -2,7 +2,8 @@
 
 Simple hassle-free image processing using OpenCV for large amount of images concurrently in C++.
 
-This program can apply a list of filters on a group of images concurrently. For example you can change red color to green, then yello color to blue and then apply a gaussian blur in all
+This program can apply a list of filters on a group of images concurrently. For example, you can change red color to
+green, then yellow color to blue and then apply a gaussian blur in all
 images inside a directory. These operations will be in the most possible efficient way. Both image groups and every single filters on individual images are processed in parallel and concurrently.
 
 Created using modern C++ 20 features to utilize concurrent and parallel programming and managing threads using
@@ -28,7 +29,7 @@ No manual thread handling, no locks, no mutex, no semaphore.
 * Simple and understandable code
 * Documented code
 
-For comparison you can see a sequential manipulation of images takes too long:
+For comparison, you can see a sequential manipulation of images takes too long:
 
 https://github.com/j-tag/mass-image-processing/assets/3483320/e59c3637-8c45-44e2-8faf-dc380ed25bd0
 
